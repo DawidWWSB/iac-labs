@@ -31,12 +31,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-  poetry-app-test:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./example-app
-    steps:
-      - name: Test example poetry app
-        run:
-            poetry run task test
+    - name: Test example poetry app
+      run: |
+        poetry run task test
+
