@@ -31,16 +31,50 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-    - name: poetry-app-lint
-      run: |
-        poetry run task lint
-    - name: poetry-app-formatter
-      run: |
-        poetry run task formatter
-    - name: poetry-app-security
-      run: |
-        poetry run task security
-    - name: poetry-app-test
-      run: |
-        poetry run task test
+  poetry-app-lint:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: poetry-group
+    defaults:
+      run:
+        working-directory: ./example-app
+    needs: build
+    steps:
+      - name: Poetry app lint
+        run: |
+            poetry run task lint
+  poetry-app-formatter:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: poetry-group
+    defaults:
+      run:
+        working-directory: ./example-app
+    needs: build
+    steps:
+      - name: Poetry app formatter
+        run: |
+            poetry run task formatter
+  poetry-app-security:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: poetry-group
+    defaults:
+      run:
+        working-directory: ./example-app
+    needs: build
+    steps:
+      - name: Poetry app security
+        run: |
+            poetry run task security
+  poetry-app-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
+    needs: ['poetry-app-lint', 'poetry-app-formatter', 'poetry-app-security']
+    steps:
+      - name: Poetry app test
+        run: |
+            poetry run task test
 
