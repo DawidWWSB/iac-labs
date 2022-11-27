@@ -51,6 +51,5 @@ jobs:
           path: /home/runner/work/iac-labs/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Test example poetry app
-        run: |
-            source $VENV
+        run:
             poetry run task test
