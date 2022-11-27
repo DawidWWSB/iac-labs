@@ -64,6 +64,7 @@ jobs:
           key: ${{ runner.os }}-venv
       - name: Poetry app lint
         run: |
+            source $VENV 
             poetry run task lint
   poetry-app-formatter:
     runs-on: ubuntu-latest
@@ -89,6 +90,7 @@ jobs:
           key: ${{ runner.os }}-venv
       - name: Poetry app formatter
         run: |
+            source $VENV 
             poetry run task formatter
   poetry-app-security:
     runs-on: ubuntu-latest
@@ -114,6 +116,7 @@ jobs:
           key: ${{ runner.os }}-venv
       - name: Poetry app security
         run: |
+            source $VENV 
             poetry run task security
   poetry-app-test:
     runs-on: ubuntu-latest
@@ -137,5 +140,6 @@ jobs:
           key: ${{ runner.os }}-venv
       - name: Poetry app test
         run: |
+            source $VENV       
             poetry run task test
 
