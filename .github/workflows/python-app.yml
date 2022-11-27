@@ -45,7 +45,7 @@ jobs:
   poetry-app-lint:
     runs-on: ubuntu-latest
     concurrency:
-      group: poetry-group
+      group: ${{ github.ref }}
     defaults:
       run:
         working-directory: ./example-app
@@ -71,7 +71,7 @@ jobs:
   poetry-app-formatter:
     runs-on: ubuntu-latest
     concurrency:
-      group: poetry-group
+      group: ${{ github.ref }}
     defaults:
       run:
         working-directory: ./example-app
@@ -97,7 +97,7 @@ jobs:
   poetry-app-security:
     runs-on: ubuntu-latest
     concurrency:
-      group: poetry-group
+      group: ${{ github.ref }}
     defaults:
       run:
         working-directory: ./example-app
