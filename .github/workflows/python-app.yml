@@ -31,7 +31,16 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
-    - name: Test example poetry app
+    - name: poetry-app-lint
+      run: |
+        poetry run task lint
+    - name: poetry-app-formatter
+      run: |
+        poetry run task formatter
+    - name: poetry-app-security
+      run: |
+        poetry run task security
+    - name: poetry-app-test
       run: |
         poetry run task test
 
